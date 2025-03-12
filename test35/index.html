@@ -1,0 +1,166 @@
+<!DOCTYPE html> <!-- 문서 유형을 HTML5로 선언 -->
+<html lang="en-us"> <!-- HTML 문서 시작, 언어는 미국 영어 -->
+  <head>
+    <meta charset="utf-8"> <!-- 문자 인코딩을 UTF-8로 설정 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> <!-- HTML 콘텐츠 타입 설정 -->
+    <title>Uni-Run with Chat</title> <!-- 웹 페이지 제목 설정 -->
+    <link rel="shortcut icon" href="TemplateData/favicon.ico"> <!-- 즐겨찾기 아이콘 설정 -->
+    <link rel="stylesheet" href="TemplateData/style.css"> <!-- 외부 CSS 파일 링크 -->
+    <style>
+      /* 채팅 창 스타일 */
+      #chat-container {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 300px;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        color: white;
+        z-index: 9999; 
+      }
+      #chat-messages {
+        height: 200px;
+        overflow-y: auto;
+        margin-bottom: 10px;
+      }
+      #chat-input {
+        width: 70%;
+        padding: 5px;
+        margin-right: 5px;
+      }
+      #chat-send {
+        width: 25%;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 게임 컨테이너 (기존 코드 유지) -->
+    <div id="unity-container" class="unity-desktop"> <!-- Unity 게임 컨테이너 -->
+      <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas> <!-- Unity 캔버스 -->
+      <div id="unity-loading-bar"> <!-- 로딩 바 컨테이너 -->
+        <div id="unity-logo"></div> <!-- Unity 로고 -->
+        <div id="unity-progress-bar-empty"> <!-- 빈 로딩 바 -->
+          <div id="unity-progress-bar-full"></div> <!-- 채워진 로딩 바 -->
+        </div>
+      </div>
+      <div id="unity-warning"></div> <!-- 경고 메시지 표시 영역 -->
+      <div id="unity-footer"> <!-- 푸터 영역 -->
+        <div id="unity-logo-title-footer"></div> <!-- 푸터 로고 제목 -->
+        <div id="unity-fullscreen-button"></div> <!-- 전체화면 버튼 -->
+        <div id="unity-build-title">Uni-Run</div> <!-- 빌드 제목 -->
+      </div>
+    </div>
+
+    <!-- 채팅 컨테이너 (추가된 부분) -->
+    <div id="chat-container"> <!-- 채팅 컨테이너 -->
+      <div id="chat-messages"></div> <!-- 채팅 메시지 표시 영역 -->
+      <input type="text" id="chat-input" placeholder="메시지를 입력하세요"> <!-- 메시지 입력 필드 -->
+      <button id="chat-send" onclick="sendChatMessage()">전송</button> <!-- 전송 버튼 -->
+    </div>
+
+    <script>
+      // Unity WebGL 초기화 관련 코드
+      var canvas = document.querySelector("#unity-canvas"); // 캔버스 요소 선택
+
+      function unityShowBanner(msg, type) { // 경고 배너 표시 함수
+        var warningBanner = document.querySelector("#unity-warning"); // 경고 배너 선택
+        function updateBannerVisibility() { // 배너 가시성 업데이트 함수
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none'; // 자식 요소 유무에 따라 표시
+        }
+        var div = document.createElement('div'); // 새로운 div 요소 생성
+        div.innerHTML = msg; // 메시지 설정
+        warningBanner.appendChild(div); // 경고 배너에 메시지 추가
+        if (type == 'error') { // 오류 타입일 경우
+          div.style = 'background: red; padding: 10px;'; // 빨간 배경 설정
+        } else {
+          if (type == 'warning') { // 경고 타입일 경우
+            div.style = 'background: yellow; padding: 10px;'; // 노란 배경 설정
+          }
+          setTimeout(function() { // 5초 후에 배너 제거
+            warningBanner.removeChild(div);
+            updateBannerVisibility(); // 가시성 업데이트
+          }, 5000);
+        }
+        updateBannerVisibility(); // 초기 가시성 업데이트
+      }
+
+      var buildUrl = "Build"; // 빌드 URL 설정
+      var loaderUrl = buildUrl + "/test35.loader.js"; // 로더 URL 설정
+      var config = { // Unity 인스턴스 설정
+        arguments: [],
+        dataUrl: buildUrl + "/test35.data", // 데이터 URL
+        frameworkUrl: buildUrl + "/test35.framework.js", // 프레임워크 URL
+        codeUrl: buildUrl + "/test35.wasm", // 코드 URL
+        streamingAssetsUrl: "StreamingAssets", // 스트리밍 자산 URL
+        companyName: "DefaultCompany", // 회사 이름
+        productName: "Uni-Run", // 제품 이름
+        productVersion: "1.0", // 제품 버전
+        showBanner: unityShowBanner, // 배너 표시 함수
+      };
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) { // 모바일 장치 확인
+        var meta = document.createElement('meta'); // 새로운 메타 태그 생성
+        meta.name = 'viewport'; // 뷰포트 설정
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes'; // 모바일 최적화 설정
+        document.getElementsByTagName('head')[0].appendChild(meta); // 메타 태그 추가
+        document.querySelector("#unity-container").className = "unity-mobile"; // 모바일 클래스 추가
+        canvas.className = "unity-mobile"; // 캔버스 모바일 클래스 추가
+      } else {
+        canvas.style.width = "960px"; // 데스크탑 캔버스 너비 설정
+        canvas.style.height = "600px"; // 데스크탑 캔버스 높이 설정
+      }
+
+      document.querySelector("#unity-loading-bar").style.display = "block"; // 로딩 바 표시
+
+      var script = document.createElement("script"); // 새로운 <script> 요소를 생성합니다.
+      script.src = loaderUrl;// 로드할 Unity WebGL 스크립트의 URL을 설정합니다.
+      script.onload = () => {// 스크립트가 로드된 후 실행될 함수를 정의합니다.
+        createUnityInstance(canvas, config, (progress) => {// Unity 인스턴스를 생성하고 로딩 진행률을 추적합니다.
+          document.querySelector("#unity-progress-bar-full").style.width = (100 * progress) + "%";// 로딩 바의 진행률을 업데이트합니다.
+        }).then((unityInstance) => {// Unity 인스턴스가 성공적으로 생성된 후 실행되는 코드입니다.
+          document.querySelector("#unity-loading-bar").style.display = "none";// 로딩 바를 숨깁니다.
+          document.querySelector("#unity-fullscreen-button").onclick = () => {// 전체화면 버튼 클릭 시 실행되는 코드입니다.
+            unityInstance.SetFullscreen(1);// Unity 인스턴스를 전체화면으로 전환합니다.
+          };
+
+          // Unity 인스턴스 생성 후에 Socket.IO 클라이언트 스크립트를 동적으로 추가합니다.
+          var socketScript = document.createElement("script");// 새로운 <script> 요소를 생성합니다.
+          socketScript.src = "https://cdn.socket.io/4.5.4/socket.io.min.js"; // Socket.IO 라이브러리의 URL을 설정합니다.
+          socketScript.onload = () => {// Socket.IO 스크립트가 로드된 후 실행될 함수를 정의합니다.
+            const socket = io('http://localhost:3333');// 서버에 연결하여 Socket.IO 클라이언트를 초기화합니다.
+
+            // 채팅 메시지 수신 처리
+            socket.on('chat_message', (message) => {
+              const chatMessages = document.getElementById('chat-messages');
+              const msgElement = document.createElement('div');
+              msgElement.textContent = message;
+              chatMessages.appendChild(msgElement);
+              chatMessages.scrollTop = chatMessages.scrollHeight; // 자동 스크롤
+            });
+
+            // 메시지 전송 함수 (전역에 노출)
+            window.sendChatMessage = function() { // sendChatMessage라는 이름의 함수를 정의하고, 이를 전역(window) 객체에 추가합니다.
+              const input = document.getElementById('chat-input'); // 채팅 입력 필드를 가져옵니다.
+              const message = input.value.trim(); // 입력된 메시지를 가져오고 앞뒤 공백을 제거합니다.
+              if (message) {  // 메시지가 비어있지 않은 경우
+                socket.emit('chat', { sender: 'Player', message }); // Socket.IO를 통해 'chat' 이벤트를 전송합니다.
+                input.value = ''; // 입력 필드를 비웁니다.
+              }
+            };
+
+            // 엔터 키로 메시지 전송
+            document.getElementById('chat-input').addEventListener('keypress', (e) => { // 입력 필드에서 키프레스 이벤트 리스너 추가
+              if (e.key === 'Enter') sendChatMessage(); // 엔터 키가 눌리면 메시지 전송 함수 호출
+            });
+          };
+          document.body.appendChild(socketScript); // Socket.IO 스크립트를 문서 본문에 추가
+        }).catch((message) => { // 오류 발생 시 처리
+          alert(message); // 오류 메시지 알림
+        });
+      };
+      document.body.appendChild(script); // Unity 로더 스크립트를 문서 본문에 추가
+    </script>
+  </body>
+</html>
+
