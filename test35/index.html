@@ -1,13 +1,13 @@
-<!DOCTYPE html> <!-- ¹®¼­ À¯ÇüÀ» HTML5·Î ¼±¾ð -->
-<html lang="en-us"> <!-- HTML ¹®¼­ ½ÃÀÛ, ¾ð¾î´Â ¹Ì±¹ ¿µ¾î -->
+<!DOCTYPE html> 
+<html lang="en-us"> 
   <head>
-    <meta charset="utf-8"> <!-- ¹®ÀÚ ÀÎÄÚµùÀ» UTF-8·Î ¼³Á¤ -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> <!-- HTML ÄÜÅÙÃ÷ Å¸ÀÔ ¼³Á¤ -->
-    <title>Uni-Run with Chat</title> <!-- À¥ ÆäÀÌÁö Á¦¸ñ ¼³Á¤ -->
-    <link rel="shortcut icon" href="TemplateData/favicon.ico"> <!-- Áñ°ÜÃ£±â ¾ÆÀÌÄÜ ¼³Á¤ -->
-    <link rel="stylesheet" href="TemplateData/style.css"> <!-- ¿ÜºÎ CSS ÆÄÀÏ ¸µÅ©333 -->
+    <meta charset="utf-8"> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+    <title>Uni-Run with Chat</title> 
+    <link rel="shortcut icon" href="TemplateData/favicon.ico"> 
+    <link rel="stylesheet" href="TemplateData/style.css"> 
     <style>
-      /* Ã¤ÆÃ Ã¢ ½ºÅ¸ÀÏ */
+      
       #chat-container {
         position: fixed;
         right: 20px;
@@ -35,131 +35,131 @@
     </style>
   </head>
   <body>
-    <!-- °ÔÀÓ ÄÁÅ×ÀÌ³Ê (±âÁ¸ ÄÚµå À¯Áö) -->
-    <div id="unity-container" class="unity-desktop"> <!-- Unity °ÔÀÓ ÄÁÅ×ÀÌ³Ê -->
-      <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas> <!-- Unity Äµ¹ö½º -->
-      <div id="unity-loading-bar"> <!-- ·Îµù ¹Ù ÄÁÅ×ÀÌ³Ê -->
-        <div id="unity-logo"></div> <!-- Unity ·Î°í -->
-        <div id="unity-progress-bar-empty"> <!-- ºó ·Îµù ¹Ù -->
-          <div id="unity-progress-bar-full"></div> <!-- Ã¤¿öÁø ·Îµù ¹Ù -->
+    <!-- ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½) -->
+    <div id="unity-container" class="unity-desktop"> <!-- Unity ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ -->
+      <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas> <!-- Unity Äµï¿½ï¿½ï¿½ï¿½ -->
+      <div id="unity-loading-bar"> <!-- ï¿½Îµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ -->
+        <div id="unity-logo"></div> <!-- Unity ï¿½Î°ï¿½ -->
+        <div id="unity-progress-bar-empty"> <!-- ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ -->
+          <div id="unity-progress-bar-full"></div> <!-- Ã¤ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ -->
         </div>
       </div>
-      <div id="unity-warning"></div> <!-- °æ°í ¸Þ½ÃÁö Ç¥½Ã ¿µ¿ª -->
-      <div id="unity-footer"> <!-- ÇªÅÍ ¿µ¿ª -->
-        <div id="unity-logo-title-footer"></div> <!-- ÇªÅÍ ·Î°í Á¦¸ñ -->
-        <div id="unity-fullscreen-button"></div> <!-- ÀüÃ¼È­¸é ¹öÆ° -->
-        <div id="unity-build-title">Uni-Run</div> <!-- ºôµå Á¦¸ñ -->
+      <div id="unity-warning"></div> <!-- ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -->
+      <div id="unity-footer"> <!-- Çªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -->
+        <div id="unity-logo-title-footer"></div> <!-- Çªï¿½ï¿½ ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ -->
+        <div id="unity-fullscreen-button"></div> <!-- ï¿½ï¿½Ã¼È­ï¿½ï¿½ ï¿½ï¿½Æ° -->
+        <div id="unity-build-title">Uni-Run</div> <!-- ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -->
       </div>
     </div>
 
-    <!-- Ã¤ÆÃ ÄÁÅ×ÀÌ³Ê (Ãß°¡µÈ ºÎºÐ) -->
-    <div id="chat-container"> <!-- Ã¤ÆÃ ÄÁÅ×ÀÌ³Ê -->
-      <div id="chat-messages"></div> <!-- Ã¤ÆÃ ¸Þ½ÃÁö Ç¥½Ã ¿µ¿ª -->
-      <input type="text" id="chat-input" placeholder="¸Þ½ÃÁö¸¦ ÀÔ·ÂÇÏ¼¼¿ä"> <!-- ¸Þ½ÃÁö ÀÔ·Â ÇÊµå -->
-      <button id="chat-send" onclick="sendChatMessage()">Àü¼Û</button> <!-- Àü¼Û ¹öÆ° -->
+    <!-- Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ (ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Îºï¿½) -->
+    <div id="chat-container"> <!-- Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ -->
+      <div id="chat-messages"></div> <!-- Ã¤ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -->
+      <input type="text" id="chat-input" placeholder="ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½"> <!-- ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½Êµï¿½ -->
+      <button id="chat-send" onclick="sendChatMessage()">ï¿½ï¿½ï¿½ï¿½</button> <!-- ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° -->
     </div>
 
     <script>
-      // Unity WebGL ÃÊ±âÈ­ °ü·Ã ÄÚµå
-      var canvas = document.querySelector("#unity-canvas"); // Äµ¹ö½º ¿ä¼Ò ¼±ÅÃ
+      // Unity WebGL ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+      var canvas = document.querySelector("#unity-canvas"); // Äµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-      function unityShowBanner(msg, type) { // °æ°í ¹è³Ê Ç¥½Ã ÇÔ¼ö
-        var warningBanner = document.querySelector("#unity-warning"); // °æ°í ¹è³Ê ¼±ÅÃ
-        function updateBannerVisibility() { // ¹è³Ê °¡½Ã¼º ¾÷µ¥ÀÌÆ® ÇÔ¼ö
-          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none'; // ÀÚ½Ä ¿ä¼Ò À¯¹«¿¡ µû¶ó Ç¥½Ã
+      function unityShowBanner(msg, type) { // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½Ô¼ï¿½
+        var warningBanner = document.querySelector("#unity-warning"); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        function updateBannerVisibility() { // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ô¼ï¿½
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none'; // ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
         }
-        var div = document.createElement('div'); // »õ·Î¿î div ¿ä¼Ò »ý¼º
-        div.innerHTML = msg; // ¸Þ½ÃÁö ¼³Á¤
-        warningBanner.appendChild(div); // °æ°í ¹è³Ê¿¡ ¸Þ½ÃÁö Ãß°¡
-        if (type == 'error') { // ¿À·ù Å¸ÀÔÀÏ °æ¿ì
-          div.style = 'background: red; padding: 10px;'; // »¡°£ ¹è°æ ¼³Á¤
+        var div = document.createElement('div'); // ï¿½ï¿½ï¿½Î¿ï¿½ div ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        div.innerHTML = msg; // ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        warningBanner.appendChild(div); // ï¿½ï¿½ï¿½ ï¿½ï¿½Ê¿ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+        if (type == 'error') { // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+          div.style = 'background: red; padding: 10px;'; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         } else {
-          if (type == 'warning') { // °æ°í Å¸ÀÔÀÏ °æ¿ì
-            div.style = 'background: yellow; padding: 10px;'; // ³ë¶õ ¹è°æ ¼³Á¤
+          if (type == 'warning') { // ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+            div.style = 'background: yellow; padding: 10px;'; // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
           }
-          setTimeout(function() { // 5ÃÊ ÈÄ¿¡ ¹è³Ê Á¦°Å
+          setTimeout(function() { // 5ï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             warningBanner.removeChild(div);
-            updateBannerVisibility(); // °¡½Ã¼º ¾÷µ¥ÀÌÆ®
+            updateBannerVisibility(); // ï¿½ï¿½ï¿½Ã¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
           }, 5000);
         }
-        updateBannerVisibility(); // ÃÊ±â °¡½Ã¼º ¾÷µ¥ÀÌÆ®
+        updateBannerVisibility(); // ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½Ã¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
       }
 
-      var buildUrl = "Build"; // ºôµå URL ¼³Á¤
-      var loaderUrl = buildUrl + "/test35.loader.js"; // ·Î´õ URL ¼³Á¤
-      var config = { // Unity ÀÎ½ºÅÏ½º ¼³Á¤
+      var buildUrl = "Build"; // ï¿½ï¿½ï¿½ï¿½ URL ï¿½ï¿½ï¿½ï¿½
+      var loaderUrl = buildUrl + "/test35.loader.js"; // ï¿½Î´ï¿½ URL ï¿½ï¿½ï¿½ï¿½
+      var config = { // Unity ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½
         arguments: [],
-        dataUrl: buildUrl + "/test35.data", // µ¥ÀÌÅÍ URL
-        frameworkUrl: buildUrl + "/test35.framework.js", // ÇÁ·¹ÀÓ¿öÅ© URL
-        codeUrl: buildUrl + "/test35.wasm", // ÄÚµå URL
-        streamingAssetsUrl: "StreamingAssets", // ½ºÆ®¸®¹Ö ÀÚ»ê URL
-        companyName: "DefaultCompany", // È¸»ç ÀÌ¸§
-        productName: "Uni-Run", // Á¦Ç° ÀÌ¸§
-        productVersion: "1.0", // Á¦Ç° ¹öÀü
-        showBanner: unityShowBanner, // ¹è³Ê Ç¥½Ã ÇÔ¼ö
+        dataUrl: buildUrl + "/test35.data", // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ URL
+        frameworkUrl: buildUrl + "/test35.framework.js", // ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½Å© URL
+        codeUrl: buildUrl + "/test35.wasm", // ï¿½Úµï¿½ URL
+        streamingAssetsUrl: "StreamingAssets", // ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ú»ï¿½ URL
+        companyName: "DefaultCompany", // È¸ï¿½ï¿½ ï¿½Ì¸ï¿½
+        productName: "Uni-Run", // ï¿½ï¿½Ç° ï¿½Ì¸ï¿½
+        productVersion: "1.0", // ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½
+        showBanner: unityShowBanner, // ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½Ô¼ï¿½
       };
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) { // ¸ð¹ÙÀÏ ÀåÄ¡ È®ÀÎ
-        var meta = document.createElement('meta'); // »õ·Î¿î ¸ÞÅ¸ ÅÂ±× »ý¼º
-        meta.name = 'viewport'; // ºäÆ÷Æ® ¼³Á¤
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes'; // ¸ð¹ÙÀÏ ÃÖÀûÈ­ ¼³Á¤
-        document.getElementsByTagName('head')[0].appendChild(meta); // ¸ÞÅ¸ ÅÂ±× Ãß°¡
-        document.querySelector("#unity-container").className = "unity-mobile"; // ¸ð¹ÙÀÏ Å¬·¡½º Ãß°¡
-        canvas.className = "unity-mobile"; // Äµ¹ö½º ¸ð¹ÙÀÏ Å¬·¡½º Ãß°¡
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) { // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ È®ï¿½ï¿½
+        var meta = document.createElement('meta'); // ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Å¸ ï¿½Â±ï¿½ ï¿½ï¿½ï¿½ï¿½
+        meta.name = 'viewport'; // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes'; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
+        document.getElementsByTagName('head')[0].appendChild(meta); // ï¿½ï¿½Å¸ ï¿½Â±ï¿½ ï¿½ß°ï¿½
+        document.querySelector("#unity-container").className = "unity-mobile"; // ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+        canvas.className = "unity-mobile"; // Äµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
       } else {
-        canvas.style.width = "960px"; // µ¥½ºÅ©Å¾ Äµ¹ö½º ³Êºñ ¼³Á¤
-        canvas.style.height = "600px"; // µ¥½ºÅ©Å¾ Äµ¹ö½º ³ôÀÌ ¼³Á¤
+        canvas.style.width = "960px"; // ï¿½ï¿½ï¿½ï¿½Å©Å¾ Äµï¿½ï¿½ï¿½ï¿½ ï¿½Êºï¿½ ï¿½ï¿½ï¿½ï¿½
+        canvas.style.height = "600px"; // ï¿½ï¿½ï¿½ï¿½Å©Å¾ Äµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
       }
 
-      document.querySelector("#unity-loading-bar").style.display = "block"; // ·Îµù ¹Ù Ç¥½Ã
+      document.querySelector("#unity-loading-bar").style.display = "block"; // ï¿½Îµï¿½ ï¿½ï¿½ Ç¥ï¿½ï¿½
 
-      var script = document.createElement("script"); // »õ·Î¿î <script> ¿ä¼Ò¸¦ »ý¼ºÇÕ´Ï´Ù.
-      script.src = loaderUrl;// ·ÎµåÇÒ Unity WebGL ½ºÅ©¸³Æ®ÀÇ URLÀ» ¼³Á¤ÇÕ´Ï´Ù.
-      script.onload = () => {// ½ºÅ©¸³Æ®°¡ ·ÎµåµÈ ÈÄ ½ÇÇàµÉ ÇÔ¼ö¸¦ Á¤ÀÇÇÕ´Ï´Ù.
-        createUnityInstance(canvas, config, (progress) => {// Unity ÀÎ½ºÅÏ½º¸¦ »ý¼ºÇÏ°í ·Îµù ÁøÇà·üÀ» ÃßÀûÇÕ´Ï´Ù.
-          document.querySelector("#unity-progress-bar-full").style.width = (100 * progress) + "%";// ·Îµù ¹ÙÀÇ ÁøÇà·üÀ» ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù.
-        }).then((unityInstance) => {// Unity ÀÎ½ºÅÏ½º°¡ ¼º°øÀûÀ¸·Î »ý¼ºµÈ ÈÄ ½ÇÇàµÇ´Â ÄÚµåÀÔ´Ï´Ù.
-          document.querySelector("#unity-loading-bar").style.display = "none";// ·Îµù ¹Ù¸¦ ¼û±é´Ï´Ù.
-          document.querySelector("#unity-fullscreen-button").onclick = () => {// ÀüÃ¼È­¸é ¹öÆ° Å¬¸¯ ½Ã ½ÇÇàµÇ´Â ÄÚµåÀÔ´Ï´Ù.
-            unityInstance.SetFullscreen(1);// Unity ÀÎ½ºÅÏ½º¸¦ ÀüÃ¼È­¸éÀ¸·Î ÀüÈ¯ÇÕ´Ï´Ù.
+      var script = document.createElement("script"); // ï¿½ï¿½ï¿½Î¿ï¿½ <script> ï¿½ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+      script.src = loaderUrl;// ï¿½Îµï¿½ï¿½ï¿½ Unity WebGL ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ URLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+      script.onload = () => {// ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Îµï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+        createUnityInstance(canvas, config, (progress) => {// Unity ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+          document.querySelector("#unity-progress-bar-full").style.width = (100 * progress) + "%";// ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Õ´Ï´ï¿½.
+        }).then((unityInstance) => {// Unity ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Úµï¿½ï¿½Ô´Ï´ï¿½.
+          document.querySelector("#unity-loading-bar").style.display = "none";// ï¿½Îµï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
+          document.querySelector("#unity-fullscreen-button").onclick = () => {// ï¿½ï¿½Ã¼È­ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Úµï¿½ï¿½Ô´Ï´ï¿½.
+            unityInstance.SetFullscreen(1);// Unity ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Õ´Ï´ï¿½.
           };
 
-          // Unity ÀÎ½ºÅÏ½º »ý¼º ÈÄ¿¡ Socket.IO Å¬¶óÀÌ¾ðÆ® ½ºÅ©¸³Æ®¸¦ µ¿ÀûÀ¸·Î Ãß°¡ÇÕ´Ï´Ù.
-          var socketScript = document.createElement("script");// »õ·Î¿î <script> ¿ä¼Ò¸¦ »ý¼ºÇÕ´Ï´Ù.
-          socketScript.src = "https://cdn.socket.io/4.5.4/socket.io.min.js"; // Socket.IO ¶óÀÌºê·¯¸®ÀÇ URLÀ» ¼³Á¤ÇÕ´Ï´Ù.
-          socketScript.onload = () => {// Socket.IO ½ºÅ©¸³Æ®°¡ ·ÎµåµÈ ÈÄ ½ÇÇàµÉ ÇÔ¼ö¸¦ Á¤ÀÇÇÕ´Ï´Ù.
-            const socket = io('http://localhost:3333');// ¼­¹ö¿¡ ¿¬°áÇÏ¿© Socket.IO Å¬¶óÀÌ¾ðÆ®¸¦ ÃÊ±âÈ­ÇÕ´Ï´Ù.
+          // Unity ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½ Socket.IO Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Õ´Ï´ï¿½.
+          var socketScript = document.createElement("script");// ï¿½ï¿½ï¿½Î¿ï¿½ <script> ï¿½ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+          socketScript.src = "https://cdn.socket.io/4.5.4/socket.io.min.js"; // Socket.IO ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ï¿½ï¿½ URLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+          socketScript.onload = () => {// Socket.IO ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Îµï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+            const socket = io('http://localhost:3333');// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ Socket.IO Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Õ´Ï´ï¿½.
 
-            // Ã¤ÆÃ ¸Þ½ÃÁö ¼ö½Å Ã³¸®
+            // Ã¤ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
             socket.on('chat_message', (message) => {
               const chatMessages = document.getElementById('chat-messages');
               const msgElement = document.createElement('div');
               msgElement.textContent = message;
               chatMessages.appendChild(msgElement);
-              chatMessages.scrollTop = chatMessages.scrollHeight; // ÀÚµ¿ ½ºÅ©·Ñ
+              chatMessages.scrollTop = chatMessages.scrollHeight; // ï¿½Úµï¿½ ï¿½ï¿½Å©ï¿½ï¿½
             });
 
-            // ¸Þ½ÃÁö Àü¼Û ÇÔ¼ö (Àü¿ª¿¡ ³ëÃâ)
-            window.sendChatMessage = function() { // sendChatMessage¶ó´Â ÀÌ¸§ÀÇ ÇÔ¼ö¸¦ Á¤ÀÇÇÏ°í, ÀÌ¸¦ Àü¿ª(window) °´Ã¼¿¡ Ãß°¡ÇÕ´Ï´Ù.
-              const input = document.getElementById('chat-input'); // Ã¤ÆÃ ÀÔ·Â ÇÊµå¸¦ °¡Á®¿É´Ï´Ù.
-              const message = input.value.trim(); // ÀÔ·ÂµÈ ¸Þ½ÃÁö¸¦ °¡Á®¿À°í ¾ÕµÚ °ø¹éÀ» Á¦°ÅÇÕ´Ï´Ù.
-              if (message) {  // ¸Þ½ÃÁö°¡ ºñ¾îÀÖÁö ¾ÊÀº °æ¿ì
-                socket.emit('chat', { sender: 'Player', message }); // Socket.IO¸¦ ÅëÇØ 'chat' ÀÌº¥Æ®¸¦ Àü¼ÛÇÕ´Ï´Ù.
-                input.value = ''; // ÀÔ·Â ÇÊµå¸¦ ºñ¿ó´Ï´Ù.
+            // ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+            window.sendChatMessage = function() { // sendChatMessageï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½(window) ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Õ´Ï´ï¿½.
+              const input = document.getElementById('chat-input'); // Ã¤ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½Êµå¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
+              const message = input.value.trim(); // ï¿½Ô·Âµï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Õµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+              if (message) {  // ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+                socket.emit('chat', { sender: 'Player', message }); // Socket.IOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 'chat' ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+                input.value = ''; // ï¿½Ô·ï¿½ ï¿½Êµå¸¦ ï¿½ï¿½ï¿½Ï´ï¿½.
               }
             };
 
-            // ¿£ÅÍ Å°·Î ¸Þ½ÃÁö Àü¼Û
-            document.getElementById('chat-input').addEventListener('keypress', (e) => { // ÀÔ·Â ÇÊµå¿¡¼­ Å°ÇÁ·¹½º ÀÌº¥Æ® ¸®½º³Ê Ãß°¡
-              if (e.key === 'Enter') sendChatMessage(); // ¿£ÅÍ Å°°¡ ´­¸®¸é ¸Þ½ÃÁö Àü¼Û ÇÔ¼ö È£Ãâ
+            // ï¿½ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            document.getElementById('chat-input').addEventListener('keypress', (e) => { // ï¿½Ô·ï¿½ ï¿½Êµå¿¡ï¿½ï¿½ Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+              if (e.key === 'Enter') sendChatMessage(); // ï¿½ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ È£ï¿½ï¿½
             });
           };
-          document.body.appendChild(socketScript); // Socket.IO ½ºÅ©¸³Æ®¸¦ ¹®¼­ º»¹®¿¡ Ãß°¡
-        }).catch((message) => { // ¿À·ù ¹ß»ý ½Ã Ã³¸®
-          alert(message); // ¿À·ù ¸Þ½ÃÁö ¾Ë¸²
+          document.body.appendChild(socketScript); // Socket.IO ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+        }).catch((message) => { // ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½
+          alert(message); // ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½
         });
       };
-      document.body.appendChild(script); // Unity ·Î´õ ½ºÅ©¸³Æ®¸¦ ¹®¼­ º»¹®¿¡ Ãß°¡
+      document.body.appendChild(script); // Unity ï¿½Î´ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
     </script>
   </body>
 </html>
